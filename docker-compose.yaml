@@ -1,9 +1,17 @@
 version: '3.8'
 
+networks:
+  online-ide:
+    external: true
+    name: online-ide
+    driver: bridge
+
 services:
-  queen:
+  ai-engine:
     build:
       context: .
     # ports:
     #   - "5001:5001"
     command: python main.py
+    networks:
+      - online-ide
