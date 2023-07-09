@@ -1,11 +1,14 @@
 import os
-from flask import Flask, request, render_template
+import requests
+from flask import Flask, render_template, request, flash, redirect, url_for, send_file
+from app.utils import get_image_urls
+from app import config
+
+
 server = Flask(__name__, template_folder='app/templates')
-
-# from app import config
-
 # from app.middlewares.antiflood_middleware import antispam_func
 # from app.models import db
+
 data = [
         {
             "id": 1,
@@ -44,8 +47,22 @@ def speechrecognition():
     return render_template('route/speechrecognition.html', data=data[0])
 
 
-@server.route('/imagegenerate')
+@server.route('/imagegenerate', methods=('GET', 'POST'))
 def imagegenerate():
+    if request.method == 'POST':
+        content = request.form['content']
+        if not content:
+            flash('content is required!', 'alert')
+        else:
+            try:
+                urls = get_image_urls(content)
+                # response = requests.get(url, stream=True)
+                # data_repo = response.content
+                server.logger.info(f'{content} created an image')
+                return render_template('route/imagegenerate.html', data=data[1], images=urls)
+            except Exception as e:
+                print(e)
+                flash('Image creation error! Please, try something else.', 'alert')
     return render_template('route/imagegenerate.html', data=data[1])
 
 
