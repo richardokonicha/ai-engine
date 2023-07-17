@@ -1,25 +1,25 @@
-#pull official base image
+# Pull official base image
 FROM python:3.10.8-slim-buster
 
-
-#set working directory
+# Set working directory
 WORKDIR /
 
-# set environment variables
+# Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONNUMBUFFERED 1
+ENV PYTHONUNBUFFERED 1
+ENV OPENAI_KEY <your_openai_key_here>
 
-# #install system dependencies
+# Install system dependencies
 RUN apt-get update \
-    && apt-get -y install netcat gcc \
+    && apt-get -y install netcat gcc python3-opencv \
     && apt-get clean
 
-# install python dependenciess
+# Install Python dependencies
 RUN pip install --upgrade pip
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
-# add app
+# Add the app
 COPY . .
 
 EXPOSE 5001
