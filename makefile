@@ -8,3 +8,6 @@ server: $(VENV)
 
 run:
 	python main.py
+
+docker-bashin:
+	docker run -p 5001:5001 -it --entrypoint /bin/bash docker.io/library/patty
