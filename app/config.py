@@ -12,7 +12,7 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-required_variables = ['OPENAI_KEY']
+required_variables = []
 
 for variable in required_variables:
     if variable not in os.environ:
@@ -27,7 +27,7 @@ DATABASE_URL = os.getenv('DATABASE_URL', "mongodb+srv://******:******@cluster0.v
 DB_NAME = os.getenv('DB_NAME', 'raznesi_bot')
 WEBSITE_URL = os.getenv('WEBSITE_URL', "https://queen.fugoku.com")
 
-OPENAI_KEY = os.getenv('OPENAI_KEY', "********")
+OPENAI_KEY = os.getenv('OPENAI_KEY', "11111111111")
 
 UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER', "static/")
 TEMPLATE_FILE = os.getenv('TEMPLATE_FILE', "template.png")
