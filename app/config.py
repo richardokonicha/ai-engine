@@ -29,3 +29,11 @@ WEBSITE_URL = os.getenv('WEBSITE_URL', "https://queen.fugoku.com")
 
 OPENAI_KEY = os.getenv('OPENAI_KEY', "********")
 
+UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER', "static/")
+TEMPLATE_FILE = os.getenv('TEMPLATE_FILE', "template.png")
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+
+
+

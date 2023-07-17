@@ -3,3 +3,5 @@ venv/*
 .env
 */*/*.*.pyc
 */*/*.*.pyc
+static/*
+!static/template.png
